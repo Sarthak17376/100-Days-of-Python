@@ -70,7 +70,24 @@ elif computers_choice==2:
 elif computers_choice==3:
     print(scissors_c)
 
-if your_choice == computers_choice:
-    print("Congratulations!! You Win.")
+if your_choice ==1:
+    if computers_choice==1:
+        print("It's a draw!!")
+    elif computers_choice==2:
+        print("Opps! You Lost.")
+    else:
+        print("Congratulations! You Win.")
+elif your_choice == 2:
+    if computers_choice==2:
+        print("It's a draw!!")
+    elif computers_choice==3:
+        print("Opps! You Lost.")
+    else:
+        print("Congratulations! You Win.")
 else:
-    print("Oops!! You Loose.")
+    if computers_choice==3:
+        print("It's a draw!!")
+    elif computers_choice==1:
+        print("Opps! You Lost.")
+    else:
+        print("Congratulations! You Win.")
