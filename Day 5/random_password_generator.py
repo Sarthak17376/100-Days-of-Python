@@ -45,6 +45,8 @@ i=0
 for i in range(0,len(Pass_temp)):
     str_pass.append(Pass_temp[i])
 
+random.shuffle(str_pass)
+
 Password=""
 j=0
 for j in range(0,len(Pass_temp)):
