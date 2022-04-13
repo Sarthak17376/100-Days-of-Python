@@ -34,15 +34,18 @@ def game_starts():
                 ball.seth(135)
             elif ball.heading() == 315:
                 ball.seth(225)
+            ball.move_speed += 0.01
 
         if (-55 < ball.ycor() - paddle2.ycor() < 55) and -400 < ball.xcor() < -370:
             if ball.heading() == 135:
                 ball.seth(45)
             elif ball.heading() == 225:
                 ball.seth(315)
+            ball.move_speed += 0.01
 
         if ball.xcor() > 400:
             screen_setup.user1_point()
+            ball.move_speed = 0.3
             if screen_setup.score1 < 13:
                 ball.goto(0, 0)
                 paddle1.goto(380, 0)
@@ -55,6 +58,7 @@ def game_starts():
                 break
         elif ball.xcor() < -400:
             screen_setup.user2_point()
+            ball.move_speed = 0.3
             if screen_setup.score1 < 13:
                 ball.goto(0, 0)
                 paddle1.goto(380, 0)
