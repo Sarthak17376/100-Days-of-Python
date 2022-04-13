@@ -9,10 +9,10 @@ class Ball(Turtle):
         self.color("white")
         self.up()
         self.setheading(45)
-        self.speed("slowest")
+        self.move_speed = 0.2
 
     def move_ball(self):
-        self.forward(0.3)
+        self.forward(self.move_speed)
         if self.heading() == 45 and self.ycor() > 290:
             self.seth(-45)
         elif self.heading() == 315 and self.ycor() < -290:
