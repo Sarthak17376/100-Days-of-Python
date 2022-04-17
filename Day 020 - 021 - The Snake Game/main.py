@@ -35,13 +35,14 @@ scoreboard = Scoreboard()
 
 
 def start_game():
+    global snake
     game_on = True
     snake_list = snake.list_of_segments
     while game_on:
         jimmy.clear()
         screen.update()
         time.sleep(0.1)
-        if snake_list[0].distance(food) < 13:
+        if snake_list[0].distance(food) < 15:
             snake.extend_snake()
             food.food_move()
             scoreboard.increase_score()
@@ -50,15 +51,20 @@ def start_game():
         screen.onkey(snake.down, "Down")
         screen.onkey(snake.left, "Left")
         screen.onkey(snake.right, "Right")
-        for all_segments in range(1,len(snake_list)):
-            if snake_list[0].distance(snake_list[all_segments]) < 10:
+        for all_segments in snake_list[1:len(snake_list)]:
+            if snake_list[0].distance(all_segments) < 10:
                 game_on = False
-                jimmy.write("Game Over!!!", align="center", font=24)
-                break
+                jimmy.write("Game Over!! Enter Space to Play Again", align="center", font=24)
+                scoreboard.reset_score()
+                snake.snake_reset()
+                snake = Snake()
         if -250 < snake_list[0].xcor() < 250 and -250 < snake_list[0].ycor() < 250:
             continue
         else:
-            jimmy.write("Game Over!!!", align="center", font=24)
+            jimmy.write("Game Over!! Enter Space to Play Again", align="center", font=24)
+            scoreboard.reset_score()
+            snake.snake_reset()
+            snake = Snake()
             game_on = False
 
 
