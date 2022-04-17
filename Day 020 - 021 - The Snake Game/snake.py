@@ -71,3 +71,7 @@ class Snake:
             new_y = tail.ycor()
             new_segment.goto(new_x, new_y)
         self.list_of_segments.append(new_segment)
+
+    def snake_reset(self):
+        for segments in self.list_of_segments:
+            segments.hideturtle()
