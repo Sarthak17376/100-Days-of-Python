@@ -12,18 +12,29 @@ screen.bgpic('India.gif')
 data = pandas.read_csv("states_data.csv")
 
 states_dict = {}
+guessed_states = []
+missing_states = []
 for (state_name, x_cor, y_cor) in zip(data.Name.to_list(), data.x.to_list(), data.y.to_list()):
     states_dict[state_name] = (int(x_cor), int(y_cor))
 
-while len(states_dict) > 0:
+while len(guessed_states) < 29:
     guess = screen.textinput("Guess a State!!!", prompt="Input Here").upper()
     print(guess)
     if guess in states_dict:
         name_turtle.goto(states_dict[guess])
+        guessed_states.append(guess)
         name_turtle.write(guess)
-        del states_dict[guess]
+    elif guess == "EXIT":
+        for states in states_dict:
+            if states not in guessed_states:
+                missing_states.append(states)
+        new_learning_data = pandas.DataFrame(missing_states)
+        new_learning_data.to_csv("learn_states.cvs")
+        break
 
-name_turtle.clear()
-name_turtle.goto(0,0)
-name_turtle.write("CONGRATULATIONS!!!!", font=30)
-screen.exitonclick()
+if len(guessed_states) == 29:
+    name_turtle.clear()
+    name_turtle.goto(0,0)
+    name_turtle.write("CONGRATULATIONS!!!!", font=30)
+    screen.exitonclick()
+
